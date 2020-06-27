@@ -5,9 +5,9 @@
 class Ebool
 {
 public:
-    Ebool(void):m_ebool(char(0)){}
+    Ebool(void):m_ebool(uint8_t(0)){}
 
-    Ebool(bool const & cpy):m_ebool(static_cast<char>(cpy)){}
+    Ebool(bool const & cpy):m_ebool(static_cast<uint8_t>(cpy)){}
     Ebool(Ebool const & cpy):m_ebool(cpy.get_Ebool()){}
     Ebool operator=(Ebool const & cpy)
     {
@@ -16,20 +16,31 @@ public:
     }
     Ebool operator=(bool const & cpy)
     {
-        this->m_ebool=(this->m_ebool << 1) + static_cast<char>(cpy?1:0);
+        this->set_bool(cpy);
         return *this;
     }
 
-    char get_Ebool(void) const {return this->m_ebool;}
-
-    bool p(void) const {return this->m_ebool%2 >(this->m_ebool>>1)%2;}
-    bool n(void) const {return this->m_ebool%2 <(this->m_ebool>>1)%2;}
+    bool p(void) const {return this->m_ebool%2 > (this->m_ebool>>1)%2;}
+    bool n(void) const {return this->m_ebool%2 < (this->m_ebool>>1)%2;}
     bool stat(void)const{return this->m_ebool%2==1?true:false;}
 
-    void clear(void){this->m_ebool=char(0);}
+    void clear(void){this->m_ebool=uint8_t(0);}
+
+	virtual ~Ebool(void)
+	{
+	}
+
+protected:
+
+	void set_bool(bool const & cpy)
+    {
+		this->m_ebool=(this->m_ebool << 1) + static_cast<uint8_t>(cpy?1:0);
+    }
+
+	uint8_t get_Ebool(void) const {return this->m_ebool;}
 
 private:
-    char m_ebool;
+    uint8_t m_ebool;
 };
 
 #endif
