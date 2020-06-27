@@ -17,6 +17,7 @@ p	KEYWORD2
 clear   KEYWORD2
 stat    KEYWORD2
 get_Ebool    KEYWORD2
+set_bool    KEYWORD2
 
 ######################################
 # Instances (KEYWORD2)
